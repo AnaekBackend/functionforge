@@ -90,7 +90,7 @@ def row_to_prompt_completion(row, tokenizer, tools):
 
     return prompt, completion
 
-CALL_RE = re.compile(r"call:([a-zA-Z0-9_]+)\\{(.*?)\\}", re.DOTALL)
+CALL_RE = re.compile(r"call:([a-zA-Z0-9_]+)\{(.*?)\}", re.DOTALL)
 
 def unescape(s: str) -> str:
     return s.replace("<escape>", "")
