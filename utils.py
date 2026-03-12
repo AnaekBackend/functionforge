@@ -72,6 +72,24 @@ def row_to_text(row, tokenizer, tools):
     )
     return rendered
 
+
+def row_to_prompt_completion(row, tokenizer, tools):
+    """
+    Split a training example into (prompt, completion) for trainers that support
+    prompt-masking / response-only training (e.g. MLX-LM).
+    """
+    user_text = row["input"]
+    prompt = build_prompt(user_text, tokenizer, tools)
+    full = row_to_text(row, tokenizer, tools)
+
+    if full.startswith(prompt):
+        completion = full[len(prompt) :]
+    else:
+        # Fallback: preserve training signal even if template differs.
+        completion = gold_to_function_call(row["output"])
+
+    return prompt, completion
+
 CALL_RE = re.compile(r"call:([a-zA-Z0-9_]+)\\{(.*?)\\}", re.DOTALL)
 
 def unescape(s: str) -> str:
@@ -115,7 +133,11 @@ def load_dataset(file_path):
             rows.append(json.loads(line.strip()))
     return rows
 
-def prepare_dataset(file_path, tokenizer, tools):
+def prepare_dataset(file_path, tokenizer, tools, *, as_prompt_completion: bool = False):
     rows = load_dataset(file_path)
+    if as_prompt_completion:
+        prompts, completions = zip(*(row_to_prompt_completion(r, tokenizer, tools) for r in rows))
+        return Dataset.from_dict({"prompt": list(prompts), "completion": list(completions)})
+
     texts = [row_to_text(r, tokenizer, tools) for r in rows]
     return Dataset.from_dict({"text": texts})

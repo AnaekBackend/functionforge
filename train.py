@@ -60,7 +60,12 @@ def train(config_path):
     tools = load_tools(config['data']['tools_file'])
 
     # Prepare dataset
-    train_dataset = prepare_dataset(config['data']['train_file'], tokenizer, tools)
+    train_dataset = prepare_dataset(
+        config["data"]["train_file"],
+        tokenizer,
+        tools,
+        as_prompt_completion=IS_MLX,
+    )
 
     # Training arguments
     training_cfg = sanitize_training_args_kwargs(config["training"])
@@ -85,7 +90,7 @@ def train(config_path):
         model=model,
         tokenizer=tokenizer,
         train_dataset=train_dataset,
-        dataset_text_field="text",
+        dataset_text_field=None if IS_MLX else "text",
         max_seq_length=config['model']['max_seq_length'],
         dataset_num_proc=2,
         packing=config['training']['packing'],
@@ -93,14 +98,11 @@ def train(config_path):
     )
 
     # Configure to train on responses only.
-    # Note: MLX-Tune currently routes this to mlx_lm prompt-masking, which is not
-    # supported for our single-column "text" dataset format.
-    if not IS_MLX:
-        trainer = train_on_responses_only(
-            trainer,
-            instruction_part="<start_of_turn>user\n",
-            response_part="<start_of_turn>model\n",
-        )
+    trainer = train_on_responses_only(
+        trainer,
+        instruction_part="<start_of_turn>user\n",
+        response_part="<start_of_turn>model\n",
+    )
 
     # Train
     print("Starting training...")
