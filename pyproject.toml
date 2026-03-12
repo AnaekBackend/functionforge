@@ -1,0 +1,28 @@
+[project]
+name = "functionforge"
+version = "0.1.0"
+description = "Fine-tune FunctionGemma for structured function-call routing"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "unsloth[colab-new]",
+    "unsloth-zoo",
+    "google-cloud-bigquery-storage",
+    "transformers",
+    "datasets",
+    "torch",
+    "accelerate",
+    "peft",
+    "trl",
+    "pandas",
+    "scikit-learn",
+    "matplotlib",
+    "seaborn",
+    "pyyaml",
+    "jsonschema",
+    "tqdm",
+]
+
+[tool.uv.sources]
+unsloth = { git = "https://github.com/unslothai/unsloth.git" }
+

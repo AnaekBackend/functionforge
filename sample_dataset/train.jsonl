@@ -1,0 +1,30 @@
+{"input": "purchase", "output": {"name": "ask_clarify", "arguments": {"reason": "out_of_scope"}}}
+{"input": "clock out", "output": {"name": "clock_out", "arguments": {}}}
+{"input": "out at 5pm", "output": {"name": "clock_out", "arguments": {"time": "5pm"}}}
+{"input": "brb 10 min", "output": {"name": "take_break", "arguments": {"break_type": "generic", "duration_minutes": 10}}}
+{"input": "timesheet this week", "output": {"name": "get_timesheet", "arguments": {"scope": "self", "period": "this_week"}}}
+{"input": "who is working today", "output": {"name": "get_summary", "arguments": {"scope": "team", "date": "today"}}}
+{"input": "break for 15 minutes", "output": {"name": "take_break", "arguments": {"break_type": "generic", "duration_minutes": 15}}}
+{"input": "on vacation tomorrow", "output": {"name": "apply_leave", "arguments": {"leave_type": "vacation", "start_date": "tomorrow"}}}
+{"input": "in at 17:00", "output": {"name": "clock_in", "arguments": {"time": "17:00"}}}
+{"input": "change manager", "output": {"name": "ask_clarify", "arguments": {"reason": "missing_dates"}}}
+{"input": "in at 10", "output": {"name": "clock_in", "arguments": {"time": "10"}}}
+{"input": "how to clock in", "output": {"name": "get_help", "arguments": {"topic": "time_tracking"}}}
+{"input": "absence summary", "output": {"name": "get_summary", "arguments": {"scope": "self"}}}
+{"input": "clocking out", "output": {"name": "clock_out", "arguments": {}}}
+{"input": "clocking in", "output": {"name": "clock_in", "arguments": {}}}
+{"input": "starting work", "output": {"name": "clock_in", "arguments": {}}}
+{"input": "timesheet team", "output": {"name": "get_timesheet", "arguments": {"scope": "team", "period": "today"}}}
+{"input": "timesheet", "output": {"name": "get_timesheet", "arguments": {"scope": "self", "period": "today"}}}
+{"input": "my hours", "output": {"name": "get_timesheet", "arguments": {"scope": "self", "period": "today"}}}
+{"input": "sick tomorrow", "output": {"name": "apply_leave", "arguments": {"leave_type": "sick", "start_date": "tomorrow"}}}
+{"input": "coffee break", "output": {"name": "take_break", "arguments": {"break_type": "coffee"}}}
+{"input": "brb", "output": {"name": "take_break", "arguments": {"break_type": "generic"}}}
+{"input": "brb in 30 mins", "output": {"name": "take_break", "arguments": {"break_type": "generic", "duration_minutes": 30}}}
+{"input": "hours worked this month", "output": {"name": "get_timesheet", "arguments": {"scope": "self", "period": "this_month"}}}
+{"input": "sick next monday", "output": {"name": "apply_leave", "arguments": {"leave_type": "sick", "start_date": "next monday"}}}
+{"input": "out", "output": {"name": "clock_out", "arguments": {}}}
+{"input": "summary today", "output": {"name": "get_summary", "arguments": {"scope": "self", "date": "today"}}}
+{"input": "in for project alpha", "output": {"name": "clock_in", "arguments": {"project": "alpha"}}}
+{"input": "in at 9am", "output": {"name": "clock_in", "arguments": {"time": "9am"}}}
+{"input": "in at 9am", "output": {"name": "clock_in", "arguments": {"time": "9am"}}}

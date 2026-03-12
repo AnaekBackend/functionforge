@@ -1,0 +1,15 @@
+{"input": "12/10/24", "output": {"name": "ask_clarify", "arguments": {"reason": "unclear_request"}}}
+{"input": "vacation today", "output": {"name": "apply_leave", "arguments": {"leave_type": "vacation", "start_date": "today"}}}
+{"input": "remote work tomorrow", "output": {"name": "apply_leave", "arguments": {"leave_type": "remote", "start_date": "tomorrow"}}}
+{"input": "in at 8:30", "output": {"name": "clock_in", "arguments": {"time": "8:30"}}}
+{"input": "wfh next week", "output": {"name": "apply_leave", "arguments": {"leave_type": "wfh", "start_date": "next week"}}}
+{"input": "team summary", "output": {"name": "get_summary", "arguments": {"scope": "team"}}}
+{"input": "out at 5pm", "output": {"name": "clock_out", "arguments": {"time": "5pm"}}}
+{"input": "teams", "output": {"name": "ask_clarify", "arguments": {"reason": "out_of_scope"}}}
+{"input": "in", "output": {"name": "clock_in", "arguments": {}}}
+{"input": "team availability", "output": {"name": "get_summary", "arguments": {"scope": "team"}}}
+{"input": "clock in", "output": {"name": "clock_in", "arguments": {}}}
+{"input": "edit settings", "output": {"name": "ask_clarify", "arguments": {"reason": "out_of_scope"}}}
+{"input": "my timesheet", "output": {"name": "get_timesheet", "arguments": {"scope": "self", "period": "today"}}}
+{"input": "who is available today", "output": {"name": "get_summary", "arguments": {"scope": "team", "date": "today"}}}
+{"input": "hours worked", "output": {"name": "get_timesheet", "arguments": {"scope": "self", "period": "today"}}}

@@ -1,0 +1,39 @@
+model:
+  name: "unsloth/functiongemma-270m-it"
+  max_seq_length: 1024
+  load_in_4bit: true
+
+lora:
+  r: 16
+  target_modules: 
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+  lora_alpha: 16
+  lora_dropout: 0.0
+  bias: "none"
+  use_gradient_checkpointing: "unsloth"
+  random_state: 42
+
+training:
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 2
+  warmup_steps: 10
+  max_steps: 150
+  learning_rate: 2.0e-4
+  optim: "adamw_8bit"
+  weight_decay: 0.0
+  lr_scheduler_type: "linear"
+  seed: 3407
+  output_dir: "results"
+  report_to: "none"
+  packing: false
+
+data:
+  train_file: "data/processed/train_function_calling.jsonl"
+  eval_file: "data/processed/eval_function_calling.jsonl"
+  tools_file: "data/attendancebot_tools.json"
