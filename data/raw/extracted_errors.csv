@@ -1,0 +1,117 @@
+message,intent_label,employee_name,company,employee_id,bot_name,source_file,timestamp
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-01-09.json,1736442674.047939
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-01-27.json,1737997485.188059
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-02-03.json,1738652354.167259
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-02-07.json,1738948700.878049
+exception,,Arshi Ahmad,Notamedia,6101122,AttendanceBot – PTO & Time Tracking,2025-02-18.json,1739884435.585179
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-02-19.json,1739983263.074239
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-02-26.json,1740594581.545539
+exception,,tatiana,redder,843709,AttendanceBot – PTO & Time Tracking,2025-02-26.json,1740595040.819989
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-02-27.json,1740676466.888239
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-03-03.json,1741025047.438309
+exception,,Fire Chief McKee,Riviera Beach Volunteer Fire Company,6193576,AttendanceBot – PTO & Time Tracking,2025-03-03.json,1741032592.013959
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-03-06.json,1741280612.043489
+exception,,michele,redder,843704,AttendanceBot – PTO & Time Tracking,2025-03-11.json,1741692884.179629
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-03-13.json,1741885516.182659
+exception,,itsamazeling,Slickdeals,5657125,AttendanceBot – PTO & Time Tracking,2025-03-14.json,1741969206.669789
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-03-21.json,1742576532.619279
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-04-11.json,1744387373.841539
+exception,,webmaster,Blockonomics,6504102,AttendanceBot – PTO & Time Tracking,2025-04-14.json,1744629048.360149
+exception,,michele,redder,843704,AttendanceBot – PTO & Time Tracking,2025-04-15.json,1744713368.612089
+exception,,michele,redder,843704,AttendanceBot – PTO & Time Tracking,2025-04-15.json,1744713388.954379
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-05-07.json,1746633949.954659
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-05-09.json,1746801812.051689
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-05-09.json,1746805392.648589
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-05-16.json,1747411732.207349
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-05-19.json,1747671050.874459
+exception,,leio,Hardhut,6548827,AttendanceBot – PTO & Time Tracking,2025-05-23.json,1748027596.551879
+exception,,Kirubel Birru,SLAC,3093131,AttendanceBot – PTO & Time Tracking,2025-05-27.json,1748350004.282769
+exception,,Kirubel Birru,SLAC,3093131,AttendanceBot – PTO & Time Tracking,2025-05-27.json,1748352714.098459
+exception,,luigi,redder,843703,AttendanceBot – PTO & Time Tracking,2025-06-06.json,1749225817.133069
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-06-10.json,1749571799.852479
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-06-13.json,1749830651.992679
+exception,,Rose Dawson,CoastalCC_Staff,5587296,AttendanceBot – PTO & Time Tracking,2025-07-01.json,1751398976.854999
+exception,,Yash Jain,Alinea,6635210,AttendanceBot – PTO & Time Tracking,2025-07-08.json,1751983607.859339
+exception,,Yash Jain,Alinea,6635210,AttendanceBot – PTO & Time Tracking,2025-07-08.json,1751983664.801219
+exception,,Yash Jain,Alinea,6635210,AttendanceBot – PTO & Time Tracking,2025-07-08.json,1751983723.224719
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-07-14.json,1752509957.064479
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-07-16.json,1752684581.261099
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-07-18.json,1752855135.016299
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-07-23.json,1753286698.962069
+`start`,,Nawsher Ali,Mediatiz Foundation,6679318,AttendanceBot – PTO & Time Tracking,2025-07-29.json,1753775231.190059
+exception,,Josue Bonilla,RightCapital,6281229,AttendanceBot – PTO & Time Tracking,2025-08-01.json,1754081780.712709
+exception,,luigi,redder,843703,AttendanceBot – PTO & Time Tracking,2025-08-03.json,1754237606.462489
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-08-12.json,1755014446.199709
+le di “view your team’s punch status”,,Claudia Castro,Living Stones Foundation Volunteer Program,6711827,AttendanceBot – PTO & Time Tracking,2025-08-25.json,1756155507.978339
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-08-27.json,1756311024.272309
+exception,,janicekelly,DPL,30887,AttendanceBot – PTO & Time Tracking,2025-08-29.json,1756476648.697239
+exception,,David,Rex4media,4335255,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756810969.046849
+exception,,Matias,Rex4media,4335238,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756811131.218269
+exception,,Matias,Rex4media,4335238,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756814602.199399
+exception,,Sara,Rex4media,4335264,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756814727.784489
+exception,,Sara,Rex4media,4335264,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756814734.178209
+exception,,David,Rex4media,4335255,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756815569.224389
+exception,,Sara,Rex4media,4335264,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756816117.780999
+exception,,Sara,Rex4media,4335264,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756819513.120159
+exception,,David,Rex4media,4335255,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756823341.693499
+exception,,Matias,Rex4media,4335238,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756825599.177489
+exception,,Sara,Rex4media,4335264,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756825745.100279
+exception,,David,Rex4media,4335255,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756825913.901929
+exception,,Sara,Rex4media,4335264,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756879192.066449
+exception,,Matias,Rex4media,4335238,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756879415.568289
+exception,,Sara,Rex4media,4335264,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756879499.794619
+exception,,Matias,Rex4media,4335238,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756879555.743099
+exception,,David,Rex4media,4335255,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756879747.468859
+exception,,David,Rex4media,4335255,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756879751.011529
+exception,,Matias,Rex4media,4335238,AttendanceBot – PTO & Time Tracking,2025-09-02.json,1756880092.387259
+exception,,Matias,Rex4media,4335238,AttendanceBot – PTO & Time Tracking,2025-09-03.json,1756897377.536849
+exception,,Sara,Rex4media,4335264,AttendanceBot – PTO & Time Tracking,2025-09-03.json,1756897660.601879
+exception,,Sara,Rex4media,4335264,AttendanceBot – PTO & Time Tracking,2025-09-03.json,1756897669.022639
+exception,,Sara,Rex4media,4335264,AttendanceBot – PTO & Time Tracking,2025-09-03.json,1756901575.697519
+exception,,Toni,Rex4media,4335246,AttendanceBot – PTO & Time Tracking,2025-09-04.json,1756983827.344789
+exception,,Toni,Rex4media,4335246,AttendanceBot – PTO & Time Tracking,2025-09-04.json,1756983836.442269
+exception,,Toni,Rex4media,4335246,AttendanceBot – PTO & Time Tracking,2025-09-04.json,1756986488.363749
+exception,,michele,redder,843704,AttendanceBot – PTO & Time Tracking,2025-09-05.json,1757068632.463599
+exception,,michele,redder,843704,AttendanceBot – PTO & Time Tracking,2025-09-05.json,1757068682.414179
+exception,,Leio,Hardhut,6548827,AttendanceBot – PTO & Time Tracking,2025-09-07.json,1757228692.985629
+exception,,Ramon,Rex4media,4438912,AttendanceBot – PTO & Time Tracking,2025-09-07.json,1757312204.022419
+exception,,Ramon,Rex4media,4438912,AttendanceBot – PTO & Time Tracking,2025-09-07.json,1757312225.531819
+exception,,Ramon,Rex4media,4438912,AttendanceBot – PTO & Time Tracking,2025-09-07.json,1757312246.105069
+exception,,Ramon,Rex4media,4438912,AttendanceBot – PTO & Time Tracking,2025-09-07.json,1757312313.650179
+exception,,Ramon,Rex4media,4438912,AttendanceBot – PTO & Time Tracking,2025-09-07.json,1757313081.571469
+exception,,Ramon,Rex4media,4438912,AttendanceBot – PTO & Time Tracking,2025-09-07.json,1757314259.094929
+exception,,Ramon,Rex4media,4438912,AttendanceBot – PTO & Time Tracking,2025-09-07.json,1757314274.978529
+exception,,michele,redder,843704,AttendanceBot – PTO & Time Tracking,2025-09-11.json,1757589599.560589
+exception,,michele,redder,843704,AttendanceBot – PTO & Time Tracking,2025-09-11.json,1757589621.884349
+exception,,enok.rocha,Zig,6773326,AttendanceBot – PTO & Time Tracking,2025-10-06.json,1759752316.887449
+exception,,Lívia Falavigna,Zig,6772119,AttendanceBot – PTO & Time Tracking,2025-10-06.json,1759752344.929909
+exception,,gustavo.silva,Zig,6773372,AttendanceBot – PTO & Time Tracking,2025-10-06.json,1759752389.716089
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-10-14.json,1760457913.467759
+exception,,Viii,Automation Agency,695601,AttendanceBot – PTO & Time Tracking,2025-10-20.json,1760952316.538069
+exception,,vic,Limefish,1663909,AttendanceBot – PTO & Time Tracking,2025-10-20.json,1760952765.185439
+exception,,luigi,redder,843703,AttendanceBot – PTO & Time Tracking,2025-10-22.json,1761196315.417919
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-10-27.json,1761584544.575219
+exception,,Dwight Schrute,The Office,4020489,AttendanceBot – PTO & Time Tracking,2025-10-28.json,1761663820.012239
+exception,,Dwight Schrute,The Office,4020489,AttendanceBot – PTO & Time Tracking,2025-10-28.json,1761663926.975569
+exception,,Muskan,Zenskar,6825070,AttendanceBot – PTO & Time Tracking,2025-11-03.json,1762232322.219169
+exception,,Muskan,Zenskar,6825070,AttendanceBot – PTO & Time Tracking,2025-11-03.json,1762239443.570019
+teams,,Emilio,NoMythic,6827868,AttendanceBot – PTO & Time Tracking,2025-11-04.json,1762280286.038189
+edit settings,,Emilio,NoMythic,6827868,AttendanceBot – PTO & Time Tracking,2025-11-04.json,1762281177.219819
+exception,,Reg,Hardhut,6548824,AttendanceBot – PTO & Time Tracking,2025-11-06.json,1762475556.042389
+exception,,Greg,Lepzi,4894620,AttendanceBot – PTO & Time Tracking,2025-11-06.json,1762475573.122519
+exception,,Rachel,The Speaker Lab,6095602,AttendanceBot – PTO & Time Tracking,2025-11-06.json,1762475897.979199
+exception,,Nay Videla,ingredient brothers,5688305,AttendanceBot – PTO & Time Tracking,2025-11-06.json,1762480849.842159
+exception,,Lawrence,Kalei,6752473,AttendanceBot – PTO & Time Tracking,2025-11-06.json,1762480908.198859
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-11-08.json,1762598508.454319
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-11-08.json,1762604944.952829
+exception,,megan,Medtrics Lab,6578693,AttendanceBot – PTO & Time Tracking,2025-11-10.json,1762782888.255619
+exception,,Ansley,Natural Beginnings,4892105,AttendanceBot – PTO & Time Tracking,2025-11-10.json,1762798499.208629
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-11-13.json,1763053837.068019
+please explain how to clock in and out of work,,Kelli,Ourgenerationcares,6851408,AttendanceBot – PTO & Time Tracking,2025-11-23.json,1763938496.786279
+"so if anyone types in, they're clocked in? or just in the channel i added you to?",,Kelli,Ourgenerationcares,6851408,AttendanceBot – PTO & Time Tracking,2025-11-23.json,1763938922.948669
+exception,,Rose Dawson,CoastalCC_Staff,5587296,AttendanceBot – PTO & Time Tracking,2025-11-24.json,1764005946.527909
+exception,,Rose Dawson,CoastalCC_Staff,5587296,AttendanceBot – PTO & Time Tracking,2025-11-24.json,1764034516.675799
+exception,,Rose Dawson,CoastalCC_Staff,5587296,AttendanceBot – PTO & Time Tracking,2025-11-24.json,1764034633.848829
+check in,,Joel Barragan,Ourgenerationcares,6852601,AttendanceBot – PTO & Time Tracking,2025-11-25.json,1764113001.369749
+out : 5:17,,Guadalupe Ramírez,Ourgenerationcares,6851416,AttendanceBot – PTO & Time Tracking,2025-11-25.json,1764142016.885219
+exception,,Samuele,redder,843706,AttendanceBot – PTO & Time Tracking,2025-11-27.json,1764264438.989469
