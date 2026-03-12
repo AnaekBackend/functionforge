@@ -5,7 +5,7 @@ model:
 
 lora:
   r: 16
-  target_modules: 
+  target_modules:
     - "q_proj"
     - "k_proj"
     - "v_proj"

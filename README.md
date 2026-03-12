@@ -2,6 +2,13 @@
 
 Fine-tune [FunctionGemma-270M](https://huggingface.co/unsloth/functiongemma-270m-it) to route natural-language attendance messages to structured function calls. Uses [Unsloth](https://github.com/unslothai/unsloth) for 4-bit QLoRA training.
 
+## macOS (Apple Silicon) support
+
+This repo now supports running the same workflow on Apple Silicon via [MLX-Tune](https://github.com/ARahim3/mlx-tune) (an Unsloth-compatible API on top of Apple’s MLX).
+
+- On **macOS**, install pulls in `mlx-tune` and skips `unsloth`/`trl`.
+- You’ll also want to set `model.name` in `configs/default.yaml` to an MLX-compatible base model (typically `mlx-community/*` on HuggingFace). Keeping `unsloth/functiongemma-270m-it` will work on CUDA but usually won’t on MLX.
+
 ## Task
 
 Given a short user message like `"take a sick day tomorrow"`, the model must output a structured function call:
@@ -14,7 +21,7 @@ Nine tools are supported: `apply_leave`, `clock_in`, `clock_out`, `get_summary`,
 
 ## Repo Structure
 
-```
+```text
 .
 ├── train.py              # Fine-tuning script (QLoRA via Unsloth + TRL)
 ├── eval.py               # Evaluation script (exact match, tool accuracy, schema validity)
