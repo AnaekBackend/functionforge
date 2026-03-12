@@ -4,10 +4,16 @@ import json
 import os
 import torch
 from datetime import datetime
-from unsloth import FastLanguageModel
-from trl import SFTTrainer
+from compat import (
+    FastLanguageModel,
+    IS_MLX,
+    SFTTrainer,
+    cuda_precision_kwargs,
+    sanitize_lora_kwargs,
+    sanitize_training_args_kwargs,
+    train_on_responses_only,
+)
 from transformers import TrainingArguments
-from unsloth.chat_templates import train_on_responses_only
 from utils import load_tools, prepare_dataset
 
 def train(config_path):
@@ -38,15 +44,16 @@ def train(config_path):
     )
 
     # Add LoRA adapters
+    lora_cfg = sanitize_lora_kwargs(config["lora"])
     model = FastLanguageModel.get_peft_model(
         model,
-        r=config['lora']['r'],
-        target_modules=config['lora']['target_modules'],
-        lora_alpha=config['lora']['lora_alpha'],
-        lora_dropout=config['lora']['lora_dropout'],
-        bias=config['lora']['bias'],
-        use_gradient_checkpointing=config['lora']['use_gradient_checkpointing'],
-        random_state=config['lora']['random_state'],
+        r=lora_cfg["r"],
+        target_modules=lora_cfg["target_modules"],
+        lora_alpha=lora_cfg["lora_alpha"],
+        lora_dropout=lora_cfg["lora_dropout"],
+        bias=lora_cfg["bias"],
+        use_gradient_checkpointing=lora_cfg["use_gradient_checkpointing"],
+        random_state=lora_cfg["random_state"],
     )
 
     # Load tools
@@ -56,16 +63,16 @@ def train(config_path):
     train_dataset = prepare_dataset(config['data']['train_file'], tokenizer, tools)
 
     # Training arguments
+    training_cfg = sanitize_training_args_kwargs(config["training"])
     training_args = TrainingArguments(
         per_device_train_batch_size=config['training']['per_device_train_batch_size'],
         gradient_accumulation_steps=config['training']['gradient_accumulation_steps'],
         warmup_steps=config['training']['warmup_steps'],
         max_steps=config['training']['max_steps'],
         learning_rate=config['training']['learning_rate'],
-        fp16 = not torch.cuda.is_bf16_supported(),
-        bf16 = torch.cuda.is_bf16_supported(),
+        **cuda_precision_kwargs(torch),
         logging_steps=1,
-        optim=config['training']['optim'],
+        optim=training_cfg["optim"],
         weight_decay=config['training']['weight_decay'],
         lr_scheduler_type=config['training']['lr_scheduler_type'],
         seed=config['training']['seed'],
@@ -85,12 +92,15 @@ def train(config_path):
         args=training_args,
     )
 
-    # Configure to train on responses only
-    trainer = train_on_responses_only(
-        trainer,
-        instruction_part="<start_of_turn>user\n",
-        response_part="<start_of_turn>model\n",
-    )
+    # Configure to train on responses only.
+    # Note: MLX-Tune currently routes this to mlx_lm prompt-masking, which is not
+    # supported for our single-column "text" dataset format.
+    if not IS_MLX:
+        trainer = train_on_responses_only(
+            trainer,
+            instruction_part="<start_of_turn>user\n",
+            response_part="<start_of_turn>model\n",
+        )
 
     # Train
     print("Starting training...")
