@@ -72,7 +72,7 @@ def row_to_text(row, tokenizer, tools):
     )
     return rendered
 
-CALL_RE = re.compile(r"call:([a-zA-Z0-9_]+)\\{(.*?)\\}", re.DOTALL)
+CALL_RE = re.compile(r"call:([a-zA-Z0-9_]+)\{(.*?)\}", re.DOTALL)
 
 def unescape(s: str) -> str:
     return s.replace("<escape>", "")
