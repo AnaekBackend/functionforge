@@ -110,11 +110,18 @@ def train(config_path):
     
     # Save model
     print(f"Saving model to {run_dir}")
-    model.save_pretrained(run_dir)
+    if IS_MLX:
+        # Save a fully merged model so eval/predict can load it via from_pretrained.
+        model.save_pretrained_merged(run_dir, tokenizer)
+    else:
+        model.save_pretrained(run_dir)
     tokenizer.save_pretrained(run_dir)
     
     # Save metrics
-    metrics = trainer_stats.metrics
+    if isinstance(trainer_stats, dict):
+        metrics = trainer_stats
+    else:
+        metrics = getattr(trainer_stats, "metrics", {"trainer_stats": str(type(trainer_stats))})
     with open(os.path.join(run_dir, "metrics.json"), 'w') as f:
         json.dump(metrics, f, indent=4)
 
