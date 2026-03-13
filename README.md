@@ -2,6 +2,13 @@
 
 Fine-tune [FunctionGemma-270M](https://huggingface.co/unsloth/functiongemma-270m-it) to route natural-language attendance messages to structured function calls. Uses [Unsloth](https://github.com/unslothai/unsloth) for 4-bit QLoRA training.
 
+## macOS (Apple Silicon) support
+
+This repo now supports running the same workflow on Apple Silicon via [MLX-Tune](https://github.com/ARahim3/mlx-tune) (an Unsloth-compatible API on top of Apple’s MLX).
+
+- On **macOS**, install pulls in `mlx-tune` and skips `unsloth`/`trl`.
+- You’ll also want to set `model.name` in `configs/default.yaml` to an MLX-compatible base model (typically `mlx-community/*` on HuggingFace). Keeping `unsloth/functiongemma-270m-it` will work on CUDA but usually won’t on MLX.
+
 ## Task
 
 Given a short user message like `"take a sick day tomorrow"`, the model must output a structured function call:
@@ -14,24 +21,21 @@ Nine tools are supported: `apply_leave`, `clock_in`, `clock_out`, `get_summary`,
 
 ## Repo Structure
 
-```
+```text
 .
-├── train.py              # Fine-tuning script (QLoRA via Unsloth + TRL)
+├── train.py              # Fine-tuning script (QLoRA via Unsloth / MLX-Tune)
 ├── eval.py               # Evaluation script (exact match, tool accuracy, schema validity)
 ├── predict.py            # Single-example inference script
 ├── utils.py              # Prompt building, dataset loading, output parsing
+├── compat.py             # Platform shim (Unsloth on CUDA, MLX-Tune on macOS)
 ├── configs/
 │   └── default.yaml      # Model, LoRA, training, and data configuration
-├── data/
-│   ├── attendancebot_tools.json   # Tool schemas (OpenAI function-calling format)
-│   └── processed/
-│       ├── train_function_calling.jsonl
-│       └── eval_function_calling.jsonl
 ├── sample_dataset/
 │   ├── train.jsonl       # 30 sample training examples
 │   ├── eval.jsonl        # 15 sample eval examples
 │   └── tools.json        # Tool schemas
-├── .gitignore
+├── Makefile              # Convenience targets: train, eval, predict
+├── requirements.txt      # pip-compatible mirror of pyproject.toml dependencies
 ├── pyproject.toml
 └── uv.lock
 ```
@@ -48,13 +52,19 @@ uv sync
 
 ```bash
 uv run python train.py --config configs/default.yaml
+# or
+make train
 ```
 
 **Evaluate** (auto-selects the latest run in `results/`):
 
 ```bash
 uv run python eval.py --config configs/default.yaml
+# or
+make eval
 ```
+
+If no `results/run_*` directory exists yet, eval falls back to the configured base model (`model.name`) and writes outputs to `results/base_<timestamp>/`.
 
 Or point at a specific run directory:
 
@@ -75,8 +85,9 @@ Key fields:
 | `lora.r` | `16` | LoRA rank |
 | `training.max_steps` | `150` | Training steps |
 | `training.learning_rate` | `2e-4` | Peak LR |
-| `data.train_file` | `data/processed/train_function_calling.jsonl` | Training data |
-| `data.eval_file` | `data/processed/eval_function_calling.jsonl` | Eval data |
+| `data.train_file` | `sample_dataset/train.jsonl` | Training data |
+| `data.eval_file` | `sample_dataset/eval.jsonl` | Eval data |
+| `data.tools_file` | `sample_dataset/tools.json` | Tool schemas |
 
 ## Dataset Format
 
@@ -89,6 +100,8 @@ Each `.jsonl` line is a JSON object with `input` (user message) and `output` (ta
 ```
 
 See `sample_dataset/` for examples.
+
+Note: the `data/` directory is not committed anymore. Keep your full datasets locally and point `data.train_file`, `data.eval_file`, and `data.tools_file` in `configs/default.yaml` to your local paths.
 
 ## Eval Metrics
 
@@ -105,5 +118,5 @@ Results are written to the run directory as `eval_report.json`, `eval_report.md`
 
 ## Requirements
 
-- Python ≥ 3.10
-- CUDA GPU (tested on A100/T4; 4-bit quantization reduces VRAM to ~4 GB for the 270M model)
+- Python >= 3.10
+- CUDA GPU for Unsloth training (tested on A100/T4; 4-bit quantization reduces VRAM to ~4 GB for the 270M model), or Apple Silicon for MLX-Tune

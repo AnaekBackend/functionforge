@@ -5,15 +5,17 @@ description = "Fine-tune FunctionGemma for structured function-call routing"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "unsloth[colab-new]",
-    "unsloth-zoo",
+    "unsloth[colab-new]; sys_platform != \"darwin\"",
+    "unsloth-zoo; sys_platform != \"darwin\"",
+    "torchvision",
+    "mlx-tune; sys_platform == \"darwin\"",
     "google-cloud-bigquery-storage",
     "transformers",
     "datasets",
     "torch",
     "accelerate",
     "peft",
-    "trl",
+    "trl; sys_platform != \"darwin\"",
     "pandas",
     "scikit-learn",
     "matplotlib",
@@ -21,6 +23,7 @@ dependencies = [
     "pyyaml",
     "jsonschema",
     "tqdm",
+    "tabulate",
 ]
 
 [tool.uv.sources]

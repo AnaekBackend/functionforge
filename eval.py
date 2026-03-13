@@ -3,8 +3,9 @@ import yaml
 import json
 import os
 import torch
+from datetime import datetime
 from tqdm import tqdm
-from unsloth import FastLanguageModel
+from compat import FastLanguageModel, IS_MLX
 from utils import load_tools, build_prompt, parse_function_call, load_dataset
 from collections import defaultdict
 from sklearn.metrics import classification_report, confusion_matrix
@@ -42,22 +43,42 @@ def evaluate(config_path, run_dir=None):
     with open(config_path, 'r') as f:
         config = yaml.safe_load(f)
 
+    base_model_name = config["model"]["name"]
+    max_seq_length = config["model"]["max_seq_length"]
+    load_in_4bit = config["model"]["load_in_4bit"]
+
     if run_dir is None:
-        # Find latest run
-        base_dir = config['training']['output_dir']
-        runs = [os.path.join(base_dir, d) for d in os.listdir(base_dir) if d.startswith("run_")]
-        if not runs:
-            print("No runs found. Please provide a run directory.")
-            return
-        run_dir = max(runs, key=os.path.getmtime)
+        # Prefer latest fine-tuned run if it exists; otherwise evaluate base model.
+        base_dir = config["training"]["output_dir"]
+        os.makedirs(base_dir, exist_ok=True)
+
+        runs = [
+            os.path.join(base_dir, d)
+            for d in os.listdir(base_dir)
+            if d.startswith("run_") and os.path.isdir(os.path.join(base_dir, d))
+        ]
+
+        if runs:
+            run_dir = max(runs, key=os.path.getmtime)
+            model_path = run_dir
+            eval_kind = "finetuned"
+        else:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            run_dir = os.path.join(base_dir, f"base_{timestamp}")
+            os.makedirs(run_dir, exist_ok=True)
+            model_path = base_model_name
+            eval_kind = "base"
+    else:
+        model_path = run_dir
+        eval_kind = "finetuned"
     
-    print(f"Evaluating run: {run_dir}")
+    print(f"Evaluating ({eval_kind}) into: {run_dir}")
 
     # Load model and tokenizer
     model, tokenizer = FastLanguageModel.from_pretrained(
-        model_name=run_dir,
-        max_seq_length=config['model']['max_seq_length'],
-        load_in_4bit=config['model']['load_in_4bit'],
+        model_name=model_path,
+        max_seq_length=max_seq_length,
+        load_in_4bit=load_in_4bit,
         dtype=None
     )
     FastLanguageModel.for_inference(model)
@@ -82,20 +103,28 @@ def evaluate(config_path, run_dir=None):
         gold = row["output"]
         
         prompt = build_prompt(user_text, tokenizer, tools)
-        inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-        
-        with torch.no_grad():
-            outputs = model.generate(
-                **inputs,
-                max_new_tokens=128,
-                do_sample=False,
-                temperature=0.0,
-                pad_token_id=tokenizer.eos_token_id
+
+        if IS_MLX:
+            # MLX-Tune returns completion text directly (not token IDs).
+            response_part = model.generate(prompt=prompt, max_tokens=128)
+        else:
+            inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+            with torch.no_grad():
+                outputs = model.generate(
+                    **inputs,
+                    max_new_tokens=128,
+                    do_sample=False,
+                    temperature=0.0,
+                    pad_token_id=tokenizer.eos_token_id,
+                )
+
+            gen_text = tokenizer.decode(outputs[0], skip_special_tokens=False)
+            # Extract the assistant response part
+            response_part = (
+                gen_text.split("<start_of_turn>model\n")[-1]
+                if "<start_of_turn>model\n" in gen_text
+                else gen_text
             )
-        
-        gen_text = tokenizer.decode(outputs[0], skip_special_tokens=False)
-        # Extract the assistant response part
-        response_part = gen_text.split("<start_of_turn>model\n")[-1] if "<start_of_turn>model\n" in gen_text else gen_text
         
         pred = parse_function_call(response_part)
         

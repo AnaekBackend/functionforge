@@ -3,7 +3,7 @@ import yaml
 import json
 import os
 import torch
-from unsloth import FastLanguageModel
+from compat import FastLanguageModel, IS_MLX
 from utils import load_tools, build_prompt, parse_function_call
 
 def predict(query, config_path, run_dir=None):
@@ -34,20 +34,26 @@ def predict(query, config_path, run_dir=None):
     
     # Build prompt
     prompt = build_prompt(query, tokenizer, tools)
-    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-    
-    # Generate
-    with torch.no_grad():
-        outputs = model.generate(
-            **inputs,
-            max_new_tokens=128,
-            do_sample=False,
-            temperature=0.0,
-            pad_token_id=tokenizer.eos_token_id
+
+    if IS_MLX:
+        response_part = model.generate(prompt=prompt, max_tokens=128)
+    else:
+        inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+        with torch.no_grad():
+            outputs = model.generate(
+                **inputs,
+                max_new_tokens=128,
+                do_sample=False,
+                temperature=0.0,
+                pad_token_id=tokenizer.eos_token_id,
+            )
+
+        gen_text = tokenizer.decode(outputs[0], skip_special_tokens=False)
+        response_part = (
+            gen_text.split("<start_of_turn>model\n")[-1]
+            if "<start_of_turn>model\n" in gen_text
+            else gen_text
         )
-    
-    gen_text = tokenizer.decode(outputs[0], skip_special_tokens=False)
-    response_part = gen_text.split("<start_of_turn>model\n")[-1] if "<start_of_turn>model\n" in gen_text else gen_text
     
     pred = parse_function_call(response_part)
     
