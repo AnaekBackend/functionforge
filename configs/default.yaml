@@ -34,6 +34,6 @@ training:
   packing: false
 
 data:
-  train_file: "data/processed/train_function_calling.jsonl"
-  eval_file: "data/processed/eval_function_calling.jsonl"
-  tools_file: "data/attendancebot_tools.json"
+  train_file: "sample_dataset/train.jsonl"
+  eval_file: "sample_dataset/eval.jsonl"
+  tools_file: "sample_dataset/tools.json"
