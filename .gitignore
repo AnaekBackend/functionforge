@@ -44,5 +44,4 @@ service_account*.json
 wandb/
 
 # data
-data/processed/
-data/*.md
+data/
